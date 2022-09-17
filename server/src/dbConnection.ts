@@ -2,7 +2,7 @@ import { DataSource } from "typeorm"
 import { client } from "./entities/client"
 import { campaign } from "./entities/campaign";
 
-export const myDataSource = new DataSource({
+export const data = new DataSource({
     type: "postgres",
     host: "localhost",
     port: 5432,
@@ -12,8 +12,8 @@ export const myDataSource = new DataSource({
     entities: [client, campaign]
 })
 
-export function initializeDatabase() {
-    myDataSource
+export function dbInit() {
+    data
         .initialize()
         .then(() => {
             console.log("Db initialized");
