@@ -21,12 +21,12 @@ create table campaign
     name varchar(50) not null,
     status int not null,
     start_date timestamp null,
-    image_path varchar(500) null
+    image_url varchar(500) null
 );
 
-insert into campaign(name, status, start_date, image_path)
+insert into campaign(name, status, start_date, image_url)
 values ('Campaign1', 1, '2022-08-22 22:00:00', 'somePath1');
-insert into campaign(name, status, start_date, image_path)
+insert into campaign(name, status, start_date, image_url)
 values ('Campaign2', 1, '2022-08-22 22:00:00', 'somePath2');
-insert into campaign(name, status, start_date, image_path)
+insert into campaign(name, status, start_date, image_url)
 values ('Campaign3,', 1, '2022-08-22 22:00:00', 'somePath13');
