@@ -1,6 +1,6 @@
-import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
-import { dbInit } from './dbConnection';
+import express, { Express } from "express";
+import dotenv from "dotenv";
+import { dbInit } from "./dbConnection";
 import auth from "./routes/authRoute";
 import campaign from "./routes/campaignRoute";
 
@@ -15,7 +15,7 @@ app.use("/api/auth", auth);
 app.use("/api/campaign", campaign);
 
 app.listen(port, () => {
-  console.log(`Running at https://localhost:${port}`);
+  console.log(`Running at http://localhost:${port}`);
 });
 
 dbInit();

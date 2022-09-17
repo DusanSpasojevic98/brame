@@ -1,4 +1,4 @@
-export default interface clientDto {
-    username: string;
-    password: string;
+export default interface clientDTO {
+  username: string;
+  password: string;
 }
