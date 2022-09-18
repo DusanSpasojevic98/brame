@@ -3,11 +3,15 @@ import dotenv from "dotenv";
 import { dbInit } from "./dbConnection";
 import auth from "./routes/authRoute";
 import campaign from "./routes/campaignRoute";
+import cors from "cors";
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT;
+
+// Allow all CORS request for the sake of testing.
+app.use(cors());
 
 app.use(express.json());
 
