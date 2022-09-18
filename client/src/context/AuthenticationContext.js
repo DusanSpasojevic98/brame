@@ -1,7 +1,5 @@
 import React, { createContext } from 'react';
-
 import { axiosInstance } from '../axios/axios';
-
 import { authenticationService } from '../services';
 
 const AuthenticationContext = createContext();

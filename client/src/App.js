@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // Components
 import LoginPage from "./pages/login/LoginPage.js"
+import HomeCampaignsPage from "./pages/home/HomeCampaignsPage.js";
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<LoginPage />} />
+          <Route exact path="/home" element={<HomeCampaignsPage />} />
         </Routes>
       </Router>
     </div>
