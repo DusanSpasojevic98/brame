@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, } from 'react';
+import React, { createContext } from 'react';
 
 import { axiosInstance } from '../axios/axios';
 
@@ -10,7 +10,7 @@ const AuthenticationContextProvider = props => {
 
   const setClientToken = token => {
     localStorage.setItem('token', token.token);
-    axiosInstance.defaults.headers.authorization = `Bearer ${token}`;
+    axiosInstance.defaults.headers.authorization = `Bearer ${token.token}`;
   };
 
   const deleteClientToken = () => {
@@ -18,29 +18,13 @@ const AuthenticationContextProvider = props => {
     return localStorage.removeItem('token');
   };
 
-  // const getClientToken = () => {
-  //   const userToken = localStorage.getItem('token')
-
-  //   if (userToken) {
-  //     return setClientToken(userToken)
-  //   }
-  // };
-
-  // Maybe not needed, need to test token handling
-  // useEffect(() => {
-  //   if (token === '') {
-  //     getClientToken();
-  //   }
-  // }, [token]);
-
-
-  // Maybe add successCallback, errorCallback and setup consistent error handling
-  const login = async (data) => {
+  const login = async (data, successCallback, errorCallback) => {
     try {
       const response = await authenticationService.login(data);
       setClientToken(response.data);
+      successCallback();
     } catch (error) {
-      console.log('error?.message :>> ', error?.message);
+      errorCallback(error?.message);
     }
   }
 
@@ -55,6 +39,5 @@ const AuthenticationContextProvider = props => {
     </AuthenticationContext.Provider>
   );
 };
-
 
 export { AuthenticationContext, AuthenticationContextProvider };
