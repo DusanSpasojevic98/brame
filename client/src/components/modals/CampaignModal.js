@@ -19,7 +19,6 @@ const CampaignModal = ({ open, setOpen, title, isEdit, editId, editName }) => {
   });
   const isSubmitActive = campaignData.name != '';
 
-  console.log('editId', editId)
 
   const handleChangeImage = () => (event) => {
     if (event.target.files) {
@@ -53,7 +52,6 @@ const CampaignModal = ({ open, setOpen, title, isEdit, editId, editName }) => {
   const submitNewCampaign = () => {
     if (isEdit) {
       const data = { ...campaignData, editId };
-      console.log('data :>> ', data);
       updateCampaign(data);
     } else {
       createNewCampaign(campaignData);

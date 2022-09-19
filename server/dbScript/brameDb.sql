@@ -9,11 +9,11 @@ create table client
 );
 
 insert into client
-values(1, 'Client1', '$2y$10$SWylxWX6R/bIShAFRQtVJ.ahr4epnWJ9QtaizbjqgzSDpbdDkyD5u');
+values(1, 'Client1', '$2b$06$ROIksKJzJ2PHhceOJlW64.ivW8MQxXSmvg6IsPS6xerFeL2Op5DdW');
 insert into client
-values(2, 'Client2', '$2y$10$SWylxWX6R/bIShAFRQtVJ.ahr4epnWJ9QtaizbjqgzSDpbdDkyD5u');
+values(2, 'Client2', '$2b$06$ROIksKJzJ2PHhceOJlW64.ivW8MQxXSmvg6IsPS6xerFeL2Op5DdW');
 insert into client
-values(3, 'Client3', '$2y$10$SWylxWX6R/bIShAFRQtVJ.ahr4epnWJ9QtaizbjqgzSDpbdDkyD5u');
+values(3, 'Client3', '$2b$06$ROIksKJzJ2PHhceOJlW64.ivW8MQxXSmvg6IsPS6xerFeL2Op5DdW');
 
 create table campaign
 (

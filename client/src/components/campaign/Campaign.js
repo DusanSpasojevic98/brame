@@ -7,25 +7,24 @@ import moment from 'moment';
 import { STATUS_CONSTANTS } from '../../utils/campaignStatuses';
 import { CampaignContext } from '../../context/CampaignContext';
 import CampaignModal from '../modals/CampaignModal';
+import DeleteModal from '../modals/DeleteModal';
 
 const Campaign = ({ image, name, status, startDate, id }) => {
   const { activateCampaign, deleteCampaign } = useContext(CampaignContext);
   const campaignStart = startDate ? moment(startDate).format('HH:mm - YYYY-MM-DD') : "Pending";
   const campaignStatus = STATUS_CONSTANTS[status].name;
-  const [openModal, setOpenModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false)
 
   const activateCampaignClick = () => {
     activateCampaign(id);
   }
 
-  const deleteCampaignClick = () => {
-    deleteCampaign(id);
-  }
-
   //This needs better alingment definitely
   return (
     <Card sx={styles.cardWrapper} style={styles.campaignWrapper}>
-      <CampaignModal open={openModal} setOpen={setOpenModal} isEdit={true} editId={id} editName={name} />
+      <CampaignModal open={openEditModal} setOpen={setOpenEditModal} isEdit={true} editId={id} editName={name} />
+      <DeleteModal open={openDeleteModal} setOpen={setOpenDeleteModal} deleteId={id} />
       <Avatar sx={styles.avatarWrapper} style={styles.avatar} />
       <div style={styles.oneItemStyle}>
         <h4>
@@ -53,17 +52,17 @@ const Campaign = ({ image, name, status, startDate, id }) => {
       </div>
 
       <CardActions disableSpacing style={styles.actionWrapper}>
-        {campaignStatus != "Deleted" &&
-          <IconButton onClick={setOpenModal}>
+        {campaignStatus !== "Deleted" &&
+          <IconButton onClick={() => { setOpenEditModal(true) }}>
             Edit
           </IconButton>
         }
-        {campaignStatus != "Deleted" &&
-          <IconButton onClick={deleteCampaignClick}>
+        {campaignStatus !== "Deleted" &&
+          <IconButton onClick={() => { setOpenDeleteModal(true) }}>
             Delete
           </IconButton>
         }
-        {campaignStatus == "Inactive" &&
+        {campaignStatus === "Inactive" &&
           <IconButton onClick={activateCampaignClick}>
             Activate
           </IconButton>
