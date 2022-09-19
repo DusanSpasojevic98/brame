@@ -6,7 +6,7 @@ import LoginPage from "./pages/login/LoginPage.js"
 import HomeCampaignsPage from "./pages/home/HomeCampaignsPage.js";
 
 function App() {
-
+  //Should regulate routes if there is no token or token expires
   return (
     <div>
       <Router>
