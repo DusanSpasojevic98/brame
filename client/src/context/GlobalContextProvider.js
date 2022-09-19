@@ -1,11 +1,13 @@
 import React from 'react';
-
 import { AuthenticationContextProvider } from './AuthenticationContext';
+import { CampaignContextProvider } from './CampaignContext';
 
 const GlobalContextProvider = props => {
   return (
     <AuthenticationContextProvider>
-      {props.children}
+      <CampaignContextProvider>
+        {props.children}
+      </CampaignContextProvider>
     </AuthenticationContextProvider>
   );
 };

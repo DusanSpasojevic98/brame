@@ -29,4 +29,4 @@ values ('Campaign1', 1, '2022-08-22 22:00:00', 'somePath1');
 insert into campaign(name, status, start_date, image_url)
 values ('Campaign2', 1, '2022-08-22 22:00:00', 'somePath2');
 insert into campaign(name, status, start_date, image_url)
-values ('Campaign3,', 1, '2022-08-22 22:00:00', 'somePath13');
+values ('Campaign3', 1, '2022-08-22 22:00:00', 'somePath13');

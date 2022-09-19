@@ -3,14 +3,23 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
-import { CampaignContext } from '../../context';
+import { CampaignContext } from '../../context/CampaignContext';
 
-const CampaignModal = () => {
-  const [open, setOpen] = React.useState(false);
+//Should probably make more reusable but or current purpose is okay
+const CampaignModal = ({ open, setOpen, title, isEdit, editId, editName }) => {
+  const { createNewCampaign, updateCampaign } = useContext(CampaignContext);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const namePlaceholder = editName ? editName : "";
   const [image, setImage] = React.useState();
   const [previewImage, setPreviewImage] = React.useState();
+  const [campaignData, setCampaignData] = React.useState({
+    name: '',
+    // image
+  });
+  const isSubmitActive = campaignData.name != '';
+
+  console.log('editId', editId)
 
   const handleChangeImage = () => (event) => {
     if (event.target.files) {
@@ -20,6 +29,7 @@ const CampaignModal = () => {
     }
   };
 
+  //Should put in a helper - picture upload but its not connected to the backend
   const fileToBase64 = async (file) => {
     if (file !== undefined) {
       const reader = new FileReader();
@@ -34,22 +44,27 @@ const CampaignModal = () => {
     }
     setImage(null);
   };
-  const [campaignData, setCampaignData] = React.useState({
-    name: '',
-    // image
-  });
+
 
   const handleChange = (name, value) => {
     setCampaignData({ ...campaignData, [name]: value });
   };
 
   const submitNewCampaign = () => {
+    if (isEdit) {
+      const data = { ...campaignData, editId };
+      console.log('data :>> ', data);
+      updateCampaign(data);
+    } else {
+      createNewCampaign(campaignData);
+    }
+
     setOpen(false);
   }
 
   return (
     <div>
-      <Button onClick={handleOpen}>Create new campaign</Button>
+      <Button onClick={handleOpen}>{title}</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -85,6 +100,7 @@ const CampaignModal = () => {
           <div style={styles.verticalMargin}>
             <TextField
               name="name"
+              placeholder={namePlaceholder}
               required
               fullWidth
               id="name"
@@ -94,16 +110,31 @@ const CampaignModal = () => {
             />
           </div>
           <Button
+            disabled={!isSubmitActive}
             onClick={() => submitNewCampaign()}
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Submit new campaign
+            {
+              isEdit ?
+                "Update campaign"
+                :
+                "Submit new campaign"
+            }
+
+          </Button>
+          <Button
+            onClick={() => handleClose()}
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Cancel
           </Button>
         </Box>
       </Modal>
-    </div >
+    </div>
   );
 }
 

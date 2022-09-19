@@ -8,9 +8,29 @@ export const getAllCampaigns = async () => {
 export const createNewCampaign = async data => {
   const payload = {
     name: data.name,
-    image: data.image,
+    imageUrl: `someImageUrl${data.name}`,
   };
 
-  const response = await campaignApiClient.create(payload);
+  const response = await campaignApiClient.createNewCampaign(payload);
+  return response;
+};
+export const updateCampaign = async data => {
+  const payload = {
+    name: data.name,
+    imageUrl: `someImageUrl${data.name}`,
+    id: data.editId,
+  };
+
+  const response = await campaignApiClient.updateCampaign(payload);
+  return response;
+};
+
+export const activateCampaign = async (id) => {
+  const response = await campaignApiClient.activateCampaign(id);
+  return response;
+};
+
+export const deleteCampaign = async (id) => {
+  const response = await campaignApiClient.deleteCampaign(id);
   return response;
 };

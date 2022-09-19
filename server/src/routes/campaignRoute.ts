@@ -4,7 +4,7 @@ import { AuthRoute } from "../middlewares/authMiddleware";
 
 const campaignRoute = Router();
 
-campaignRoute.get("/capmaigns", AuthRoute, capmaignController.getAllCampaigns);
+campaignRoute.get("/campaigns", AuthRoute, capmaignController.getAllCampaigns);
 
 campaignRoute.post("/create", AuthRoute, capmaignController.createCampaign);
 
