@@ -28,7 +28,7 @@ const Header = () => {
         <AppBar position="static">
           <Toolbar>
             <Typography id='logo' variant="h6" component="div" sx={{ flexGrow: 1 }}>
-               Campaign
+              Brame Campaign
             </Typography>
             {token && <Button onClick={handleLogoutClick} color="inherit">Log out</Button>}
           </Toolbar>
